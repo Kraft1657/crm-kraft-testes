@@ -37,11 +37,25 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const norm=v=>String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
 function icons(){ if(window.lucide) window.lucide.createIcons(); }
 function toast(msg){const e=$("#toast");e.textContent=msg;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),1800)}
+const pageInfo={
+  "Dashboard":["VISÃO GERAL","Dashboard","Acompanhe o desempenho comercial e os principais indicadores da equipe."],
+  "Calendário de Atividades":["AGENDA COMERCIAL","Calendário de Atividades","Planeje visitas, reuniões e retornos em uma visão centralizada."],
+  "CRM Comercial":["ÁREA COMERCIAL","CRM Comercial","Base de clientes, contatos e oportunidades comerciais da Kraft Máquinas."],
+  "Relatório de Visitas":["ATIVIDADE DE CAMPO","Relatório de Visitas","Registre e acompanhe visitas comerciais e seus resultados."],
+  "Follow-ups":["ACOMPANHAMENTO","Follow-ups","Organize retornos, lembretes e próximas ações comerciais."],
+  "Relatórios Comerciais":["ANÁLISE COMERCIAL","Relatórios Comerciais","Acompanhe indicadores, tendências e resultados da operação."],
+  "Mensagens":["COMUNICAÇÃO","Mensagens","Centralize a comunicação interna da equipe comercial."],
+  "Separador de E-mails":["FERRAMENTAS","Separador de E-mails","Organize listas de contatos para campanhas e ações comerciais."],
+  "Configurações":["ADMINISTRAÇÃO","Configurações","Gerencie usuários, permissões e preferências do sistema."]
+};
 function go(page){
   $$("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
   $$(".lab-only-page").forEach(s=>s.classList.toggle("active",s.dataset.content===page));
-  $("#header-title").textContent=page;$("#breadcrumb").textContent=`Kraft Máquinas / ${page}`;
-  $("#sidebar").classList.remove("open");icons();
+  const info=pageInfo[page]||["KRAFT MÁQUINAS",page,""];
+  $("#hero-kicker").textContent=info[0];
+  $("#header-title").textContent=info[1];
+  $("#hero-description").textContent=info[2];
+  icons();
 }
 $$("#nav button").forEach(b=>b.onclick=()=>go(b.dataset.page));
 
@@ -50,13 +64,6 @@ $("#theme-toggle").onclick=()=>{
   document.documentElement.dataset.theme=dark?"light":"dark";
   $("#theme-toggle").innerHTML=`<i data-lucide="${dark?"moon":"sun"}"></i><span>${dark?"Escuro":"Claro"}</span>`;icons();
 };
-$("#sidebar-toggle").onclick=()=>{
-  $("#app-shell").classList.toggle("sidebar-hidden");
-  const hidden=$("#app-shell").classList.contains("sidebar-hidden");
-  $("#sidebar-toggle").innerHTML=`<i data-lucide="${hidden?"panel-left-open":"panel-left-close"}"></i>`;icons();
-};
-$("#mobile-open").onclick=()=>$("#sidebar").classList.add("open");
-$("#mobile-close").onclick=()=>$("#sidebar").classList.remove("open");
 
 function rows(){
   const q=norm($("#crm-search").value),uf=$("#uf-filter").value,seller=$("#seller-filter").value,area=$("#area-filter").value,special=$("#special-filter").value;

@@ -942,3 +942,251 @@ body{overflow-x:hidden}
   .lab-modal form{grid-template-columns:1fr 1fr}
   .lab-reminder .actions{grid-template-columns:1fr}
 }
+
+
+/* =========================================================
+   LAYOUT EXPERIMENTAL — NAVEGAÇÃO SUPERIOR
+   Inspirado na referência enviada pelo usuário.
+   Mantém a paleta original do CRM KRAFT.
+   ========================================================= */
+.top-shell{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(28,110,64,.13), transparent 28%),
+    radial-gradient(circle at 90% 0%, rgba(25,216,117,.06), transparent 24%),
+    var(--bg);
+}
+.top-navigation{
+  position:sticky;
+  top:0;
+  z-index:80;
+  height:74px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding:0 28px;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb, var(--surface-strong) 92%, transparent);
+  backdrop-filter:blur(22px);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.top-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+  min-width:150px;
+}
+.top-brand img{
+  width:78px;
+  height:40px;
+  object-fit:cover;
+  object-position:left center;
+}
+.top-brand>span{
+  font-size:7px;
+  letter-spacing:.18em;
+  color:var(--green);
+  font-weight:900;
+}
+.top-tabs{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  flex:1;
+  min-width:0;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.top-tabs::-webkit-scrollbar{display:none}
+.top-tabs button{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 11px;
+  border-radius:9px;
+  white-space:nowrap;
+  font-size:8px;
+  font-weight:750;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.top-tabs button svg{width:15px;height:15px}
+.top-tabs button:hover{
+  background:var(--soft);
+  color:var(--text);
+}
+.top-tabs button.active{
+  background:rgba(32,190,98,.12);
+  color:var(--green);
+  box-shadow:inset 0 0 0 1px rgba(55,215,124,.14);
+}
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+}
+.top-icon{
+  width:39px;
+  height:39px;
+  border:1px solid var(--line)!important;
+  background:var(--surface)!important;
+  color:var(--text);
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+}
+.top-icon svg{width:16px;height:16px}
+.top-user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:5px 8px 5px 5px;
+  border-radius:10px;
+  background:var(--surface);
+  border:1px solid var(--line);
+}
+.top-user>div{
+  width:29px;height:29px;border-radius:8px;
+  background:var(--green);color:white;
+  display:grid;place-items:center;font-weight:900;font-size:10px;
+}
+.top-user span{display:flex;flex-direction:column;line-height:1.05}
+.top-user b{font-size:8px}
+.top-user small{font-size:6px;color:var(--muted);margin-top:3px}
+
+.top-main{min-height:calc(100vh - 74px)}
+.hero-strip{
+  min-height:245px;
+  padding:64px 48px 44px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid rgba(124,173,142,.08);
+}
+.hero-strip:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(19,132,71,.05), transparent 58%),
+    radial-gradient(circle at 16% 16%, rgba(73,240,138,.05) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 52% 30%, rgba(73,240,138,.05) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 14%, rgba(73,240,138,.05) 0 1px, transparent 1.5px);
+  background-size:auto,160px 160px,210px 210px,240px 240px;
+}
+.hero-copy,.hero-meta{position:relative;z-index:1}
+.hero-copy{max-width:720px}
+.hero-copy small{
+  display:block;
+  color:var(--green);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.18em;
+  margin-bottom:14px;
+}
+.hero-copy h1{
+  margin:0;
+  font-size:46px;
+  line-height:1;
+  letter-spacing:-.04em;
+  color:var(--text);
+}
+.hero-copy p{
+  margin:17px 0 0;
+  max-width:650px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+.hero-meta{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding-bottom:5px;
+}
+.top-content{
+  width:min(1600px, calc(100% - 64px));
+  margin:0 auto;
+  padding:34px 0 56px;
+}
+
+/* O título interno do CRM vira uma barra de ação, já que o título principal foi para o hero */
+.top-content .crm-title{
+  margin-bottom:14px;
+  padding:0;
+}
+.top-content .crm-title>span,
+.top-content .crm-title>div{
+  display:none;
+}
+.top-content .crm-title{
+  justify-content:flex-end;
+}
+.top-content .lab-banner{margin-top:0}
+
+/* cards e painel com mais respiro no novo layout */
+.top-content .crm-stats{margin-bottom:16px}
+.top-content .crm-panel{
+  border-radius:16px;
+  overflow:hidden;
+}
+.top-content .crm-tools{padding:14px 14px 12px}
+.top-content .bulk{padding:10px 14px}
+.top-content .crm-table{max-height:none!important}
+
+/* dark tweaks matching the original CRM */
+[data-theme="dark"] .top-navigation{
+  background:rgba(6,34,20,.93);
+}
+[data-theme="dark"] .hero-strip{
+  background:linear-gradient(180deg,rgba(6,34,20,.44),rgba(4,22,13,.08));
+}
+[data-theme="dark"] .top-tabs button.active{
+  background:rgba(53,205,116,.12);
+}
+[data-theme="dark"] .top-user,
+[data-theme="dark"] .top-icon{
+  background:rgba(255,255,255,.035)!important;
+}
+
+/* responsive top nav */
+@media(max-width:1200px){
+  .top-navigation{gap:14px;padding:0 18px}
+  .top-user span{display:none}
+  .top-user{padding-right:5px}
+  .top-brand{min-width:125px}
+  .top-tabs button{padding:9px 8px}
+  .top-tabs button span{display:none}
+  .top-tabs button svg{width:17px;height:17px}
+}
+@media(max-width:760px){
+  .top-navigation{
+    height:auto;
+    min-height:66px;
+    flex-wrap:wrap;
+    padding:10px 14px;
+  }
+  .top-brand{min-width:auto}
+  .top-brand>span{display:none}
+  .top-actions{margin-left:auto}
+  .top-tabs{
+    order:3;
+    width:100%;
+    flex-basis:100%;
+    padding-bottom:2px;
+  }
+  .top-tabs button span{display:inline}
+  .hero-strip{min-height:200px;padding:40px 20px 28px;align-items:flex-start;flex-direction:column}
+  .hero-copy h1{font-size:36px}
+  .hero-meta{align-self:flex-start}
+  .top-content{width:calc(100% - 28px);padding-top:24px}
+}

@@ -8,46 +8,50 @@
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
-<div class="app" id="app-shell">
-  <aside id="sidebar">
-    <div class="brand">
-      <span class="lab-brand-image"><img class="lab-logo" src="assets/kraft-logo.png" alt="Kraft Máquinas"></span>
-      <div><b></b><small>COMERCIAL</small></div>
-      <button id="mobile-close"><i data-lucide="x"></i></button>
+<div class="top-shell">
+  <header class="top-navigation">
+    <div class="top-brand">
+      <img src="assets/kraft-logo.png" alt="Kraft Máquinas">
+      <span>COMERCIAL</span>
     </div>
-    <nav id="nav">
+
+    <nav id="nav" class="top-tabs">
       <button data-page="Dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
-      <button data-page="Calendário de Atividades"><i data-lucide="calendar-days"></i><span>Calendário de Atividades</span></button>
-      <button class="active" data-page="CRM Comercial"><i data-lucide="contact-round"></i><span>CRM Comercial</span></button>
-      <button data-page="Relatório de Visitas"><i data-lucide="map-pinned"></i><span>Relatório de Visitas</span></button>
+      <button data-page="Calendário de Atividades"><i data-lucide="calendar-days"></i><span>Calendário</span></button>
+      <button class="active" data-page="CRM Comercial"><i data-lucide="contact-round"></i><span>CRM</span></button>
+      <button data-page="Relatório de Visitas"><i data-lucide="map-pinned"></i><span>Visitas</span></button>
       <button data-page="Follow-ups"><i data-lucide="calendar-clock"></i><span>Follow-ups</span></button>
-      <button data-page="Relatórios Comerciais"><i data-lucide="chart-no-axes-combined"></i><span>Relatórios Comerciais</span></button>
+      <button data-page="Relatórios Comerciais"><i data-lucide="chart-no-axes-combined"></i><span>Relatórios</span></button>
       <button data-page="Mensagens"><i data-lucide="message-square"></i><span>Mensagens</span></button>
-      <button data-page="Separador de E-mails"><i data-lucide="list-filter"></i><span>Separador de E-mails</span></button>
+      <button data-page="Separador de E-mails"><i data-lucide="list-filter"></i><span>E-mails</span></button>
       <button data-page="Configurações"><i data-lucide="settings"></i><span>Configurações</span></button>
     </nav>
-    <div class="profile">
-      <div>L</div>
-      <span><b>Lorenzo</b><small>Administrador</small></span>
-      <button title="Sair"><i data-lucide="log-out"></i></button>
-    </div>
-  </aside>
 
-  <main>
-    <header>
-      <button class="mobile" id="mobile-open"><i data-lucide="menu"></i></button>
-      <button class="sidebar-toggle" id="sidebar-toggle" title="Ocultar menu lateral"><i data-lucide="panel-left-close"></i></button>
-      <div>
-        <small id="breadcrumb">Kraft Máquinas / CRM Comercial</small>
-        <h1 id="header-title">CRM Comercial</h1>
-      </div>
-      <button class="bell" id="bell"><i data-lucide="bell"></i></button>
-      <div class="sync-indicator online"><i></i><span>Sincronizado</span></div>
+    <div class="top-actions">
+      <button class="top-icon" id="bell" title="Lembrete"><i data-lucide="bell"></i></button>
       <button class="theme-toggle" id="theme-toggle"><i data-lucide="sun"></i><span>Claro</span></button>
-    </header>
+      <div class="top-user">
+        <div>L</div>
+        <span><b>Lorenzo</b><small>Administrador</small></span>
+      </div>
+    </div>
+  </header>
 
-    <div class="content page-transition">
-      <section class="lab-only-page active" data-content="CRM Comercial">
+  <main class="top-main">
+    <section class="hero-strip">
+      <div class="hero-copy">
+        <small id="hero-kicker">ÁREA COMERCIAL</small>
+        <h1 id="header-title">CRM Comercial</h1>
+        <p id="hero-description">Base de clientes, contatos e oportunidades comerciais da Kraft Máquinas.</p>
+      </div>
+      <div class="hero-meta">
+        <div class="sync-indicator online"><i></i><span>Sincronizado</span></div>
+        <span class="lab-badge"><i></i> AMBIENTE DE TESTES</span>
+      </div>
+    </section>
+
+    <div class="content page-transition top-content">
+<section class="lab-only-page active" data-content="CRM Comercial">
         <div class="crm-title">
           <span><i data-lucide="contact-round"></i></span>
           <div>
@@ -129,6 +133,7 @@
       <section class="lab-only-page" data-content="Mensagens"><div class="panel lab-placeholder"><div><i data-lucide="message-square"></i><h2>Mensagens</h2><p>Área de testes de mensagens.</p></div></div></section>
       <section class="lab-only-page" data-content="Separador de E-mails"><div class="panel lab-placeholder"><div><i data-lucide="list-filter"></i><h2>Separador de E-mails</h2><p>Área de testes do separador.</p></div></div></section>
       <section class="lab-only-page" data-content="Configurações"><div class="panel lab-placeholder"><div><i data-lucide="settings"></i><h2>Configurações</h2><p>Área de testes de configurações.</p></div></div></section>
+    
     </div>
   </main>
 </div>
