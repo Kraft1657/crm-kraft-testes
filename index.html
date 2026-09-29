@@ -1,116 +1,291 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRM KRAFT — Laboratório</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KRAFT MARKETING — Laboratório</title>
+  <meta name="description" content="Ambiente visual de testes do CRM KRAFT">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="logo">K</div>
-        <div>
-          <strong>CRM KRAFT</strong>
-          <small>Ambiente de testes</small>
-        </div>
+<div id="app-shell" class="app">
+  <aside id="sidebar">
+    <div class="brand">
+      <span>K</span>
+      <div><b>KRAFT</b><small>MARKETING</small></div>
+      <button id="mobile-close"><i data-lucide="x"></i></button>
+    </div>
+
+    <nav id="nav">
+      <button data-page="Dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+      <button data-page="Calendário de Atividades"><i data-lucide="calendar-days"></i><span>Calendário de Atividades</span></button>
+      <button class="active" data-page="CRM Comercial"><i data-lucide="contact-round"></i><span>CRM Comercial</span></button>
+      <button data-page="Relatório de Visitas"><i data-lucide="map-pinned"></i><span>Relatório de Visitas</span></button>
+      <button data-page="Follow-ups"><i data-lucide="calendar-clock"></i><span>Follow-ups</span></button>
+      <button data-page="Relatórios Comerciais"><i data-lucide="chart-no-axes-combined"></i><span>Relatórios Comerciais</span></button>
+      <button data-page="Mensagens"><i data-lucide="message-square"></i><span>Mensagens</span></button>
+      <button data-page="Separador de E-mails"><i data-lucide="list-filter"></i><span>Separador de E-mails</span></button>
+      <button data-page="Configurações"><i data-lucide="settings"></i><span>Configurações</span></button>
+    </nav>
+
+    <div class="profile">
+      <div>L</div>
+      <span><b>Lorenzo</b><small>Administrador</small></span>
+      <button title="Sair do laboratório"><i data-lucide="log-out"></i></button>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <button class="mobile" id="mobile-open"><i data-lucide="menu"></i></button>
+      <button class="sidebar-toggle" id="sidebar-toggle" title="Ocultar menu lateral"><i data-lucide="panel-left-close"></i></button>
+      <div>
+        <small id="crumb">Kraft Máquinas / CRM Comercial</small>
+        <h1 id="main-title">CRM Comercial</h1>
       </div>
+      <span class="lab-badge"><i></i> AMBIENTE DE TESTES</span>
+      <button class="bell" id="show-reminder" title="Testar lembrete"><i data-lucide="bell"></i><i></i></button>
+      <div class="sync-indicator online"><i></i><span>Sincronizado</span></div>
+      <button class="theme-toggle" id="theme-toggle"><i data-lucide="moon"></i><span>Escuro</span></button>
+    </header>
 
-      <nav>
-        <button class="nav-btn active" data-page="crm">CRM</button>
-        <button class="nav-btn" data-page="calendar">Calendário</button>
-        <button class="nav-btn" data-page="followups">Follow-ups</button>
-      </nav>
+    <div class="content page-transition">
+      <!-- CRM -->
+      <section class="static-page active" data-content="CRM Comercial">
+        <div class="static-note"><b>Laboratório:</b> visual e interações usam dados fictícios; nada é enviado ao Supabase real.</div>
 
-      <div class="lab-note">
-        <b>LAB</b>
-        <span>Dados fictícios. Nada aqui altera o sistema real.</span>
-      </div>
-    </aside>
-
-    <main class="content">
-      <header class="topbar">
-        <div>
-          <h1 id="page-title">CRM</h1>
-          <p>Ambiente separado para testar interface e comportamento.</p>
-        </div>
-        <span class="status">● Teste local / GitHub Pages</span>
-      </header>
-
-      <section id="crm" class="page active">
-        <div class="toolbar">
-          <input id="crm-search" type="search" placeholder="Buscar cliente..." />
-          <select id="seller-filter">
-            <option value="Todos">Todos</option>
-            <option value="Henrique">Henrique</option>
-            <option value="Alessandro">Alessandro</option>
-            <option value="Jaime">Jaime</option>
-            <option value="Cleber">Cleber</option>
-            <option value="Comercial">Comercial</option>
-            <option value="Sem vendedor">Sem vendedor</option>
-          </select>
+        <div class="crm-title">
+          <span><i data-lucide="contact-round"></i></span>
+          <div><h2>CRM Comercial</h2><p>Base de clientes, contatos e oportunidades comerciais da Kraft Máquinas.</p></div>
+          <button id="import-btn"><i data-lucide="upload"></i>Importar</button>
+          <button class="primary" id="new-client"><i data-lucide="plus"></i>Novo cliente</button>
         </div>
 
-        <div class="card">
-          <div class="table-wrap">
-            <table>
+        <div class="crm-stats">
+          <article><small>Clientes ativos</small><b id="stat-clients">465</b></article>
+          <article><small>Estados atendidos</small><b>12</b></article>
+          <article><small>Sem telefone</small><b id="stat-no-phone">23</b></article>
+          <article class="crm-duplicate-stat"><small>Possíveis duplicados</small><b>0</b><button disabled><i data-lucide="eye"></i>Ver possíveis duplicados</button></article>
+        </div>
+
+        <section class="crm-panel">
+          <div class="crm-tools">
+            <label><i data-lucide="search"></i><input id="crm-search" placeholder="Pesquisar cliente, cidade, contato, cargo ou telefone..."></label>
+            <select id="uf-filter"><option>Todos</option><option>RS</option><option>SC</option><option>SP</option><option>PR</option></select>
+            <select id="seller-filter">
+              <option value="Todos">Todos</option>
+              <option value="Henrique">Henrique</option>
+              <option value="Alessandro">Alessandro</option>
+              <option value="Jaime">Jaime</option>
+              <option value="Cleber">Cleber</option>
+              <option value="Comercial">Comercial</option>
+            </select>
+            <select id="area-filter"><option>Todos</option><option>Reciclagem</option><option>Embalagens</option><option>Calçados</option><option>Plásticos</option></select>
+            <select id="special-filter"><option>Todos</option><option>Sem telefone</option><option>Cadastro incompleto</option><option>Possíveis duplicados</option></select>
+          </div>
+
+          <div class="bulk">
+            <b id="selected-count" class="static-hidden">0 selecionado(s)</b>
+            <button id="bulk-copy" class="static-hidden"><i data-lucide="copy"></i>Copiar</button>
+            <button id="bulk-delete" class="static-hidden"><i data-lucide="trash-2"></i>Excluir</button>
+            <span></span>
+            <button id="csv-btn"><i data-lucide="download"></i>CSV</button>
+            <button id="xlsx-btn"><i data-lucide="file-spreadsheet"></i>Excel</button>
+          </div>
+
+          <div class="crm-table" style="overflow:auto;width:100%;padding-bottom:10px">
+            <table style="min-width:2650px;width:2650px">
               <thead>
                 <tr>
-                  <th>Cliente</th>
-                  <th>Cidade</th>
-                  <th>UF</th>
-                  <th>Vendedor</th>
+                  <th><input id="select-all" type="checkbox"></th>
+                  <th>Cliente <i data-lucide="arrow-up-down"></i></th>
+                  <th>UF <i data-lucide="arrow-up-down"></i></th>
+                  <th>Cidade <i data-lucide="arrow-up-down"></i></th>
+                  <th>DDD <i data-lucide="arrow-up-down"></i></th>
+                  <th>Vendedor <i data-lucide="arrow-up-down"></i></th>
+                  <th>Área de atuação <i data-lucide="arrow-up-down"></i></th>
+                  <th>Nome do vendedor</th>
+                  <th>Telefone</th>
+                  <th>Email</th>
+                  <th>Função do cargo</th>
+                  <th>Atualização <i data-lucide="arrow-up-down"></i></th>
+                  <th>Ações</th>
                 </tr>
               </thead>
-              <tbody id="crm-table"></tbody>
+              <tbody id="crm-body"></tbody>
             </table>
           </div>
-          <div class="pager">
-            <span id="crm-count"></span>
-            <button id="load-more-crm">Carregar mais 10</button>
+          <div class="crm-static-count">
+            <small id="crm-count"></small>
+            <button class="primary" id="crm-more">Carregar mais 10</button>
           </div>
+        </section>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section class="static-page" data-content="Dashboard">
+        <div class="welcome">
+          <div><em>VISÃO GERAL</em><h2>Bom dia, Lorenzo.</h2><p>Acompanhe o desempenho comercial e os próximos compromissos.</p></div>
+          <button class="primary" data-go="CRM Comercial"><i data-lucide="contact-round"></i>Abrir CRM</button>
+        </div>
+        <div class="cards">
+          <article><span><i data-lucide="building-2"></i></span><div><small>Clientes ativos</small><b>465</b><em>Base comercial</em></div><i data-lucide="chevron-right"></i></article>
+          <article><span><i data-lucide="calendar-days"></i></span><div><small>Atividades no mês</small><b>38</b><em>Agenda da equipe</em></div><i data-lucide="chevron-right"></i></article>
+          <article><span><i data-lucide="calendar-clock"></i></span><div><small>Follow-ups pendentes</small><b>17</b><em>5 atrasados</em></div><i data-lucide="chevron-right"></i></article>
+          <article><span><i data-lucide="map-pinned"></i></span><div><small>Visitas registradas</small><b>24</b><em>Últimos 30 dias</em></div><i data-lucide="chevron-right"></i></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="head"><div><h3>Atividade comercial</h3><p>Movimentações nos últimos meses</p></div></div>
+            <div class="bars"><div><span style="height:42%"></span><small>Mai</small></div><div><span style="height:61%"></span><small>Jun</small></div><div><span style="height:74%"></span><small>Jul</small></div><div><span style="height:88%"></span><small>Ago</small></div><div><span style="height:67%"></span><small>Set</small></div></div>
+          </section>
+          <section class="panel">
+            <div class="head"><div><h3>Acessos rápidos</h3><p>Atalhos mais utilizados</p></div></div>
+            <div class="quick">
+              <button data-go="CRM Comercial"><i data-lucide="contact-round"></i><span>CRM Comercial</span><i data-lucide="chevron-right"></i></button>
+              <button data-go="Calendário de Atividades"><i data-lucide="calendar-days"></i><span>Calendário</span><i data-lucide="chevron-right"></i></button>
+              <button data-go="Follow-ups"><i data-lucide="calendar-clock"></i><span>Follow-ups</span><i data-lucide="chevron-right"></i></button>
+              <button data-go="Relatório de Visitas"><i data-lucide="map-pinned"></i><span>Visitas</span><i data-lucide="chevron-right"></i></button>
+            </div>
+          </section>
         </div>
       </section>
 
-      <section id="calendar" class="page">
-        <div class="card">
-          <div class="calendar-head">
-            <button id="prev-month">‹</button>
-            <h2 id="month-label"></h2>
-            <button id="next-month">›</button>
-          </div>
-          <div id="calendar-grid" class="calendar-grid"></div>
-        </div>
+      <!-- CALENDAR -->
+      <section class="static-page" data-content="Calendário de Atividades">
+        <div class="page-title"><span><i data-lucide="calendar-days"></i></span><div><h2>Calendário de Atividades</h2><p>Planeje visitas, reuniões e retornos comerciais.</p></div><button class="primary" id="new-activity"><i data-lucide="plus"></i>Nova atividade</button></div>
+        <section class="panel fake-calendar">
+          <div class="fake-calendar-head"><button id="cal-prev">‹</button><b id="cal-label"></b><button id="cal-next">›</button></div>
+          <div class="fake-week"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+          <div id="calendar-grid" class="fake-month"></div>
+        </section>
       </section>
 
-      <section id="followups" class="page">
-        <div class="stats">
-          <article><small>Pendentes</small><b id="st-pending">0</b></article>
-          <article><small>Atrasados</small><b id="st-overdue">0</b></article>
-          <article><small>Próximos 7 dias</small><b id="st-next7">0</b></article>
-          <article><small>Concluídos</small><b id="st-done">0</b></article>
+      <!-- VISITS -->
+      <section class="static-page" data-content="Relatório de Visitas">
+        <div class="page-title"><span><i data-lucide="map-pinned"></i></span><div><h2>Relatório de Visitas</h2><p>Acompanhe visitas comerciais e registros de campo.</p></div><button class="primary"><i data-lucide="plus"></i>Nova visita</button></div>
+        <div class="placeholder-grid">
+          <article class="panel"><small>Visitas no mês</small><h2>24</h2><p>Registros realizados pela equipe.</p></article>
+          <article class="panel"><small>Clientes visitados</small><h2>19</h2><p>Empresas com atividade presencial.</p></article>
+          <article class="panel"><small>Estados visitados</small><h2>4</h2><p>RS, SC, PR e SP.</p></article>
         </div>
+        <section class="panel placeholder-table"><table><thead><tr><th>Data</th><th>Cliente</th><th>Vendedor</th><th>Cidade</th><th>Resultado</th></tr></thead><tbody><tr><td>29/09/2026</td><td>SOPRANO</td><td>Henrique</td><td>Farroupilha/RS</td><td>Retorno agendado</td></tr><tr><td>28/09/2026</td><td>BEIRA RIO</td><td>Henrique</td><td>Campo Bom/RS</td><td>Proposta</td></tr><tr><td>25/09/2026</td><td>COPOBRAS</td><td>Comercial</td><td>São Ludgero/SC</td><td>Visita concluída</td></tr></tbody></table></section>
+      </section>
 
+      <!-- FOLLOWUPS -->
+      <section class="static-page" data-content="Follow-ups">
+        <div class="page-title"><span><i data-lucide="calendar-clock"></i></span><div><h2>Follow-ups</h2><p>Retornos comerciais, lembretes e oportunidades em acompanhamento.</p></div><button class="primary" id="new-follow"><i data-lucide="plus"></i>Novo follow-up</button></div>
+        <div class="follow-cards">
+          <article><small>Pendentes</small><b id="f-pending">17</b></article>
+          <article><small>Atrasados</small><b id="f-overdue">5</b></article>
+          <article><small>Próximos 7 dias</small><b id="f-next">8</b></article>
+          <article><small>Concluídos</small><b id="f-done">31</b></article>
+        </div>
         <div class="toolbar">
-          <input id="follow-search" type="search" placeholder="Buscar follow-up..." />
-          <select id="follow-status">
-            <option>Pendentes</option>
-            <option>Atrasados</option>
-            <option>Concluídos</option>
-            <option>Todos</option>
-          </select>
+          <label><i data-lucide="search"></i><input id="follow-search" placeholder="Pesquisar follow-up..."></label>
+          <select id="follow-status"><option>Pendentes</option><option>Atrasados</option><option>Concluídos</option><option>Todos</option></select>
+          <select id="follow-seller"><option>Todos</option><option>Henrique</option><option>Alessandro</option><option>Jaime</option><option>Cleber</option><option>Comercial</option></select>
         </div>
+        <div id="follow-list" class="follow-static-list"></div>
+        <div class="crm-static-count"><small id="follow-count"></small><button class="primary" id="follow-more">Carregar mais 10</button></div>
+      </section>
 
-        <div id="follow-list" class="follow-list"></div>
-        <div class="pager">
-          <span id="follow-count"></span>
-          <button id="load-more-follow">Carregar mais 10</button>
+      <!-- REPORTS -->
+      <section class="static-page" data-content="Relatórios Comerciais">
+        <div class="page-title"><span><i data-lucide="chart-no-axes-combined"></i></span><div><h2>Relatórios Comerciais</h2><p>Indicadores consolidados da operação comercial.</p></div></div>
+        <div class="cards">
+          <article><span><i data-lucide="trending-up"></i></span><div><small>Propostas</small><b>18</b><em>Este mês</em></div></article>
+          <article><span><i data-lucide="circle-dollar-sign"></i></span><div><small>Valor em oportunidades</small><b>R$ 1,8 mi</b><em>Pipeline</em></div></article>
+          <article><span><i data-lucide="check-circle-2"></i></span><div><small>Pedidos</small><b>7</b><em>Convertidos</em></div></article>
+          <article><span><i data-lucide="users"></i></span><div><small>Clientes trabalhados</small><b>64</b><em>Últimos 30 dias</em></div></article>
+        </div>
+        <section class="panel"><div class="head"><div><h3>Desempenho mensal</h3><p>Exemplo visual no ambiente de testes</p></div></div><div class="bars"><div><span style="height:35%"></span><small>Abr</small></div><div><span style="height:52%"></span><small>Mai</small></div><div><span style="height:66%"></span><small>Jun</small></div><div><span style="height:78%"></span><small>Jul</small></div><div><span style="height:92%"></span><small>Ago</small></div><div><span style="height:81%"></span><small>Set</small></div></div></section>
+      </section>
+
+      <!-- MESSAGES -->
+      <section class="static-page" data-content="Mensagens">
+        <div class="page-title"><span><i data-lucide="message-square"></i></span><div><h2>Mensagens</h2><p>Comunicação interna da equipe comercial.</p></div></div>
+        <div class="messages-layout panel">
+          <aside class="messages-contacts">
+            <button class="active"><div>H</div><span><b>Henrique</b><small>Última mensagem há 4 min</small></span></button>
+            <button><div>A</div><span><b>Alessandro</b><small>Ontem</small></span></button>
+            <button><div>J</div><span><b>Jaime</b><small>Ontem</small></span></button>
+          </aside>
+          <section class="message-thread">
+            <header><i data-lucide="message-square"></i><div><h3>Henrique</h3><small>Conversa de teste</small></div></header>
+            <div class="message-list"><article class="theirs"><p>Bom dia, vou atualizar os follow-ups da manhã.</p><small>08:12</small></article><article class="mine"><p>Perfeito. Depois confere o CRM também.</p><small>08:15</small></article></div>
+            <footer><textarea placeholder="Digite uma mensagem..."></textarea><button class="primary"><i data-lucide="send"></i></button></footer>
+          </section>
         </div>
       </section>
-    </main>
-  </div>
 
-  <script src="script.js"></script>
+      <!-- EMAIL SPLITTER -->
+      <section class="static-page" data-content="Separador de E-mails">
+        <div class="page-title"><span><i data-lucide="list-filter"></i></span><div><h2>Separador de E-mails</h2><p>Organize listas de contatos em grupos menores.</p></div></div>
+        <div class="split">
+          <section class="panel"><button class="drop"><i data-lucide="upload"></i><b>Solte um arquivo aqui</b><small>CSV, XLSX ou TXT</small></button><div class="or">OU</div><textarea class="raw" placeholder="Cole os e-mails aqui..."></textarea><div class="size"><label>Tamanho do grupo<input value="50"></label><button class="primary">Separar</button></div></section>
+          <section class="panel"><div class="email-stats"><article><small>Total</small><b>0</b></article><article class="good"><small>Válidos</small><b>0</b></article><article class="warn"><small>Duplicados</small><b>0</b></article><article><small>Grupos</small><b>0</b></article></div><div class="groups"></div></section>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="static-page" data-content="Configurações">
+        <div class="page-title"><span><i data-lucide="settings"></i></span><div><h2>Configurações</h2><p>Usuários, identidade visual e preferências do sistema.</p></div></div>
+        <div class="settings">
+          <section class="panel"><div class="head"><div><h3>Usuários e permissões</h3><p>Contas cadastradas no ambiente</p></div><button class="primary"><i data-lucide="plus"></i>Novo usuário</button></div>
+            <div class="placeholder-table"><table><thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th></tr></thead><tbody><tr><td>Lorenzo</td><td>lorenzo@kraft.ind.br</td><td>Administrador</td><td>Ativo</td></tr><tr><td>Henrique</td><td>vendas@kraft.ind.br</td><td>Usuário padrão</td><td>Ativo</td></tr><tr><td>Alessandro</td><td>alessandro@kraft.ind.br</td><td>Administrador</td><td>Ativo</td></tr></tbody></table></div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- Generic client modal -->
+<div id="client-modal" class="lab-modal" hidden>
+  <div class="lab-modal-card">
+    <header><div><small>CRM COMERCIAL</small><h2 id="client-modal-title">Novo cliente</h2></div><button data-close-modal="client-modal"><i data-lucide="x"></i></button></header>
+    <form id="client-form" class="lab-form">
+      <label>Cliente<input name="name" required></label>
+      <label>UF<select name="uf"><option>RS</option><option>SC</option><option>PR</option><option>SP</option></select></label>
+      <label>Cidade<input name="city"></label>
+      <label>DDD<input name="ddd"></label>
+      <label>Vendedor<select name="seller"><option value="">Sem vendedor</option><option>Henrique</option><option>Alessandro</option><option>Jaime</option><option>Cleber</option><option>Comercial</option></select></label>
+      <label>Área<select name="area"><option>Plásticos</option><option>Reciclagem</option><option>Embalagens</option><option>Calçados</option></select></label>
+      <label>Contato<input name="contact"></label>
+      <label>Telefone<input name="phone"></label>
+      <label class="wide">Observações<textarea name="notes"></textarea></label>
+    </form>
+    <footer><button data-close-modal="client-modal">Cancelar</button><button class="primary" id="save-client">Salvar cliente</button></footer>
+  </div>
+</div>
+
+<!-- Activity modal -->
+<div id="activity-modal" class="lab-modal" hidden>
+  <div class="lab-modal-card">
+    <header><div><small>CALENDÁRIO</small><h2>Nova atividade</h2></div><button data-close-modal="activity-modal"><i data-lucide="x"></i></button></header>
+    <div class="lab-form"><label>Título<input value="Visita comercial"></label><label>Data<input type="date" value="2026-09-30"></label><label>Cliente<input placeholder="Digite pelo menos 2 caracteres"></label><label>Responsável<select><option>Lorenzo</option><option>Henrique</option><option>Alessandro</option></select></label><label class="wide">Descrição<textarea></textarea></label></div>
+    <footer><button data-close-modal="activity-modal">Cancelar</button><button class="primary" data-close-modal="activity-modal" data-toast="Atividade criada no laboratório.">Salvar atividade</button></footer>
+  </div>
+</div>
+
+<!-- Follow-up modal -->
+<div id="follow-modal" class="lab-modal" hidden>
+  <div class="lab-modal-card">
+    <header><div><small>FOLLOW-UPS</small><h2>Novo follow-up</h2></div><button data-close-modal="follow-modal"><i data-lucide="x"></i></button></header>
+    <div class="lab-form"><label>Empresa<input value="SOPRANO"></label><label>Vendedor<select><option>Henrique</option><option>Alessandro</option></select></label><label>Título<input value="Retorno comercial"></label><label>Data<input type="date" value="2026-09-30"></label><label class="wide">Observações<textarea></textarea></label></div>
+    <footer><button data-close-modal="follow-modal">Cancelar</button><button class="primary" data-close-modal="follow-modal" data-toast="Follow-up criado no laboratório.">Salvar follow-up</button></footer>
+  </div>
+</div>
+
+<div id="reminder" class="lab-reminder" hidden>
+  <header><div><small>LEMBRETE DE RETORNO</small><h2>Retorno comercial</h2></div><button id="reminder-x" title="Fechar"><i data-lucide="x"></i></button></header>
+  <div class="lab-reminder-company"><span><i data-lucide="building-2"></i></span><div><b>SOPRANO</b><em>Follow-up de teste · Henrique</em></div></div>
+  <div class="lab-reminder-actions"><button id="remind-15">Lembrar em 15 min</button><button data-go="Follow-ups" id="open-follow">Abrir tarefa</button><button class="complete" id="complete-follow">Concluir</button></div>
+</div>
+
+<div id="toast" class="lab-toast">Ação concluída.</div>
+<script src="script.js"></script>
 </body>
 </html>
