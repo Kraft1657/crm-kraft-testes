@@ -1883,3 +1883,59 @@ body{overflow-x:hidden}
     left:auto;
   }
 }
+
+
+/* =========================================================
+   AJUSTE 5 — CONFIGURAÇÕES APENAS NO PERFIL
+   - remove Configurações da barra superior
+   - dropdown do perfil sem os blocos/fundos internos
+   ========================================================= */
+
+/* agora são 8 abas no topo */
+.top-tabs{
+  grid-template-columns:repeat(8, minmax(0, 1fr)) !important;
+}
+@media(max-width:1260px){
+  .top-tabs{
+    grid-template-columns:repeat(8, minmax(0, 1fr)) !important;
+  }
+}
+@media(max-width:980px){
+  .top-tabs{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@media(max-width:640px){
+  .top-tabs{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* menu do perfil continua com o painel, mas as opções internas ficam sem fundo */
+.profile-dropdown-menu{
+  padding:8px 10px;
+}
+
+.profile-dropdown-menu button{
+  background:transparent !important;
+  border-radius:0 !important;
+  min-height:34px;
+  padding:0 4px;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+.profile-dropdown-menu button:hover{
+  background:transparent !important;
+  color:var(--green);
+}
+
+.profile-dropdown-menu button + button{
+  margin-top:2px;
+  padding-top:6px;
+  border-top:1px solid rgba(255,255,255,.07) !important;
+}
+
+[data-theme="light"] .profile-dropdown-menu button + button{
+  border-top:1px solid rgba(15,67,37,.10) !important;
+}
