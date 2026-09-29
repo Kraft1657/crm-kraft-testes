@@ -1691,3 +1691,195 @@ body{overflow-x:hidden}
     grid-template-columns:repeat(2, minmax(0, 1fr));
   }
 }
+
+
+/* =========================================================
+   AJUSTE 4 — PERFIL SIMPLIFICADO + DROPDOWN
+   - remove texto "COMERCIAL" ao lado do logo
+   - topo mostra apenas sino e perfil
+   - tema e configurações vão para o menu do perfil
+   - sino e perfil ficam no mesmo estilo das demais opções
+   ========================================================= */
+.top-brand{
+  gap:0 !important;
+}
+.top-brand img{
+  width:92px;
+  height:34px;
+}
+.top-brand>span{
+  display:none !important;
+}
+
+.top-actions{
+  gap:8px;
+  position:relative;
+}
+
+.top-utility{
+  min-height:38px;
+  border-radius:7px;
+  background:transparent !important;
+  border:0 !important;
+  color:#eef2f7 !important;
+  box-shadow:none !important;
+}
+
+.top-utility:hover{
+  background:rgba(255,255,255,.04) !important;
+}
+
+.top-utility.active{
+  background:rgba(16,18,28,.88) !important;
+  color:#fff !important;
+}
+
+[data-theme="light"] .top-utility{
+  color:#24312b !important;
+}
+[data-theme="light"] .top-utility:hover{
+  background:rgba(19,132,71,.07) !important;
+}
+[data-theme="light"] .top-utility.active{
+  background:rgba(25,27,34,.92) !important;
+  color:#fff !important;
+}
+
+#bell{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  padding:0;
+}
+#bell svg{
+  width:15px;
+  height:15px;
+}
+
+.profile-dropdown-wrap{
+  position:relative;
+}
+
+.top-user{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:5px 10px 5px 5px;
+  min-height:38px;
+  cursor:pointer;
+}
+.top-user>div{
+  width:28px;
+  height:28px;
+  border-radius:7px;
+  background:var(--green);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:10px;
+  font-weight:900;
+  flex:0 0 auto;
+}
+.top-user span{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  line-height:1.05;
+}
+.top-user b{
+  font-size:8px;
+}
+.top-user small{
+  margin-top:3px;
+  font-size:6px;
+  color:#a7b0bd;
+}
+.profile-arrow{
+  width:14px;
+  height:14px;
+  margin-left:2px;
+  flex:0 0 auto;
+}
+[data-theme="light"] .top-user small{
+  color:#5f7168;
+}
+
+.profile-dropdown-menu{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  min-width:190px;
+  padding:7px;
+  border-radius:12px;
+  background:rgba(11,17,22,.96);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 18px 44px rgba(0,0,0,.26);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  z-index:120;
+}
+.profile-dropdown-menu[hidden]{
+  display:none;
+}
+.profile-dropdown-menu button{
+  width:100%;
+  min-height:38px;
+  border:0;
+  border-radius:8px;
+  background:transparent;
+  color:#eef2f7;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:0 11px;
+  font-family:inherit;
+  font-size:9px;
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+}
+.profile-dropdown-menu button:hover{
+  background:rgba(255,255,255,.06);
+}
+.profile-dropdown-menu button svg{
+  width:15px;
+  height:15px;
+  flex:0 0 auto;
+}
+
+[data-theme="light"] .profile-dropdown-menu{
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(15,67,37,.08);
+  box-shadow:0 18px 40px rgba(12,42,23,.12);
+}
+[data-theme="light"] .profile-dropdown-menu button{
+  color:#24312b;
+}
+[data-theme="light"] .profile-dropdown-menu button:hover{
+  background:rgba(19,132,71,.07);
+}
+
+/* remover o estilo antigo do botão de tema já que ele saiu do topo */
+.theme-toggle{
+  display:none !important;
+}
+
+@media(max-width:1100px){
+  .top-user span{
+    display:none;
+  }
+  .top-user{
+    padding-right:8px;
+  }
+}
+@media(max-width:760px){
+  .top-actions{
+    margin-left:auto;
+  }
+  .profile-dropdown-menu{
+    right:0;
+    left:auto;
+  }
+}

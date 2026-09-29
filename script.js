@@ -55,14 +55,55 @@ function go(page){
   $("#hero-kicker").textContent=info[0];
   $("#header-title").textContent=info[1];
   $("#hero-description").textContent=info[2];
+  if(typeof closeProfileMenu==="function") closeProfileMenu();
   icons();
 }
 $$("#nav button").forEach(b=>b.onclick=()=>go(b.dataset.page));
 
-$("#theme-toggle").onclick=()=>{
+function updateThemeMenuLabel(){
+  const isDark=document.documentElement.dataset.theme==="dark";
+  const btn=$("#theme-menu-btn");
+  if(!btn) return;
+  btn.innerHTML=`<i data-lucide="${isDark?"sun":"moon"}"></i><span>Mudar para ${isDark?"claro":"escuro"}</span>`;
+  icons();
+}
+
+const profileToggle=$("#profile-toggle");
+const profileMenu=$("#profile-menu");
+
+function closeProfileMenu(){
+  if(profileMenu) profileMenu.hidden=true;
+  if(profileToggle) profileToggle.classList.remove("active");
+}
+function openProfileMenu(){
+  if(profileMenu) profileMenu.hidden=false;
+  if(profileToggle) profileToggle.classList.add("active");
+  icons();
+}
+
+if(profileToggle && profileMenu){
+  profileToggle.onclick=(e)=>{
+    e.stopPropagation();
+    if(profileMenu.hidden){ openProfileMenu(); }
+    else { closeProfileMenu(); }
+  };
+  document.addEventListener("click",(e)=>{
+    if(!profileMenu.hidden && !profileMenu.contains(e.target) && !profileToggle.contains(e.target)){
+      closeProfileMenu();
+    }
+  });
+}
+
+$("#theme-menu-btn").onclick=()=>{
   const dark=document.documentElement.dataset.theme==="dark";
   document.documentElement.dataset.theme=dark?"light":"dark";
-  $("#theme-toggle").innerHTML=`<i data-lucide="${dark?"moon":"sun"}"></i><span>${dark?"Escuro":"Claro"}</span>`;icons();
+  updateThemeMenuLabel();
+  closeProfileMenu();
+};
+
+$("#settings-menu-btn").onclick=()=>{
+  go("Configurações");
+  closeProfileMenu();
 };
 
 function rows(){
@@ -136,4 +177,5 @@ $("#remind15").onclick=()=>{$("#reminder").hidden=true;toast("Lembrete adiado no
 $("#open-follow").onclick=()=>{$("#reminder").hidden=true;go("Follow-ups")};
 $("#complete").onclick=()=>{$("#reminder").hidden=true;toast("Follow-up concluído no laboratório.")};
 
+updateThemeMenuLabel();
 render();icons();

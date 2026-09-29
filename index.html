@@ -12,8 +12,7 @@
   <header class="top-navigation">
     <div class="top-brand">
       <img src="assets/kraft-logo.png" alt="Kraft Máquinas">
-      <span>COMERCIAL</span>
-    </div>
+          </div>
 
     <nav id="nav" class="top-tabs">
       <button data-page="Dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
@@ -28,11 +27,19 @@
     </nav>
 
     <div class="top-actions">
-      <button class="top-icon" id="bell" title="Lembrete"><i data-lucide="bell"></i></button>
-      <button class="theme-toggle" id="theme-toggle"><i data-lucide="sun"></i><span>Claro</span></button>
-      <div class="top-user">
-        <div>L</div>
-        <span><b>Lorenzo</b><small>Administrador</small></span>
+      <button class="top-utility" id="bell" title="Lembrete"><i data-lucide="bell"></i></button>
+
+      <div class="profile-dropdown-wrap">
+        <button class="top-user top-utility" id="profile-toggle" title="Perfil">
+          <div>L</div>
+          <span><b>Lorenzo</b><small>Administrador</small></span>
+          <i data-lucide="chevron-down" class="profile-arrow"></i>
+        </button>
+
+        <div class="profile-dropdown-menu" id="profile-menu" hidden>
+          <button id="theme-menu-btn"><i data-lucide="sun"></i><span>Alternar tema</span></button>
+          <button id="settings-menu-btn"><i data-lucide="settings"></i><span>Configurações</span></button>
+        </div>
       </div>
     </div>
   </header>
